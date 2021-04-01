@@ -12,12 +12,15 @@ import { HomeModule } from './home/home.module';
 import { ErrorInterceptor } from './core/Interceptors/error.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './core/Interceptors/loading.interceptors';
+import { JwtInterceptor } from './core/Interceptors/Jwt.interceptor';
+import { OrdersComponent } from './orders/orders.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    OrdersComponent,
     
   ],
   imports: [
@@ -32,7 +35,8 @@ import { LoadingInterceptor } from './core/Interceptors/loading.interceptors';
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
   ],
   bootstrap: [AppComponent]
 })
